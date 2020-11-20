@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { CacheProvider, ThemeProvider } from '@emotion/react';
 import { cache } from '@emotion/css';
 import { globalStyles } from '../shared/styles';
 import theme from '../shared/theme';
+import { AppProps } from 'next/app';
+import { wrapper } from '../store';
 
-const App = ({ Component, pageProps }) => (
+const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
   <CacheProvider value={cache}>
     {globalStyles}
     <ThemeProvider theme={theme}>
@@ -13,4 +15,4 @@ const App = ({ Component, pageProps }) => (
   </CacheProvider>
 );
 
-export default App;
+export default wrapper.withRedux(App);
