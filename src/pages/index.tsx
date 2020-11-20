@@ -1,10 +1,21 @@
-import React, { FunctionComponent } from 'react'
-import { TEST } from '../../config'
+import React, { FunctionComponent } from 'react';
+import { TEST } from '../../config';
+import { css, useTheme } from '@emotion/react';
 
 interface Props {}
 
 const Index: FunctionComponent<Props> = () => {
-  return <div>{TEST}</div>
-}
+  const theme = useTheme();
+  return (
+    <div
+      css={css`
+        background-color: red;
+        padding: ${theme.space * 2}px;
+      `}
+    >
+      {TEST}
+    </div>
+  );
+};
 
-export default Index
+export default Index;
