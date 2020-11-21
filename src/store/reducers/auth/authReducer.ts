@@ -14,12 +14,10 @@ export interface LogoutAction {
 
 export interface AuthState {
   token: string;
-  test: number;
 }
 
 const initialState: AuthState = {
   token: null,
-  test: 1,
 };
 
 const reducer = (state = initialState, action) =>
