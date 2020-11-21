@@ -10,5 +10,22 @@
       }
     ]
   ],
-  "plugins": ["@emotion/babel-plugin"]
+  "plugins": [
+    "@emotion/babel-plugin"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "@emotion/babel-plugin",
+        [
+          "react-remove-properties",
+          {
+            "properties": [
+              "data-test"
+            ]
+          }
+        ]
+      ]
+    }
+  }
 }

@@ -29,7 +29,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head title={'아이니티'} />
         <body>
           <Main />
           <NextScript />
