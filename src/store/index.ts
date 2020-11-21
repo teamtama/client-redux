@@ -4,9 +4,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 import reducer from './reducers';
 
+export const middlewares = [ReduxThunk];
+
 // create a makeStore function
 const makeStore: MakeStore = () => {
-  const middlewares = [ReduxThunk];
   const enhancer =
     process.env.NODE_ENV === 'production'
       ? compose(applyMiddleware(...middlewares))
