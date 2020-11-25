@@ -1,15 +1,22 @@
 import React from 'react';
 import { css, useTheme } from '@emotion/react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/reducers';
 import { AuthState } from '../store/reducers/auth/authReducer';
 import { NextPage } from 'next';
+import {
+  loginAction,
+  logoutAction,
+  registerAction,
+  unregisterAction,
+} from '../store/actions/auth/authActions';
 
 interface Props {}
 
 const Index: NextPage<Props> = () => {
   const theme = useTheme();
-  const authReducer = useSelector<RootState, AuthState>(
+  const dispatch = useDispatch();
+  const { user } = useSelector<RootState, AuthState>(
     (state) => state.authReducer
   );
   return (
@@ -20,7 +27,34 @@ const Index: NextPage<Props> = () => {
         padding: ${theme.space * 2}px;
       `}
     >
-      hey {JSON.stringify(authReducer)}
+      <button
+        onClick={() =>
+          dispatch(
+            registerAction({
+              username: 'test',
+              email: `the2792@gmail.com`,
+              password: '1234',
+            })
+          )
+        }
+      >
+        Register
+      </button>
+
+      <button onClick={() => dispatch(unregisterAction())}>Unregister</button>
+
+      <button
+        onClick={() =>
+          dispatch(
+            loginAction({ email: 'the2792@gmail.com', password: '1234' })
+          )
+        }
+      >
+        Login
+      </button>
+
+      <button onClick={() => dispatch(logoutAction())}>Logout</button>
+      <div>{JSON.stringify(user)}</div>
     </div>
   );
 };

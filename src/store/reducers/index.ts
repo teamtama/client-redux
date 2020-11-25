@@ -1,10 +1,6 @@
 import { AnyAction, combineReducers } from 'redux';
 import { HYDRATE } from 'next-redux-wrapper';
-import authReducer, { AuthState } from './auth/authReducer';
-
-export type RootState = {
-  authReducer: AuthState;
-};
+import authReducer from './auth/authReducer';
 
 // create your reducer
 const reducer = (state, action: AnyAction) => {
@@ -20,5 +16,7 @@ const reducer = (state, action: AnyAction) => {
     }
   }
 };
+
+export type RootState = ReturnType<typeof reducer>;
 
 export default reducer;
